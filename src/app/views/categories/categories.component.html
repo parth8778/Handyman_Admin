@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-custom-header">
+          Categories
+          <addCategory btnText="Add category"></addCategory>
+        </div>
+        <div class="card-body">
+          <table class="table table-responsive-sm table-hover table-outline mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center"><i class="icon-people"></i></th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <td class="text-center">
+                  <div class="avatar">
+                    <img [src]="category?.categoryIcon" class="img-avatar" [alt]="category?.categoryName">
+                  </div>
+                </td>
+                <td>
+                  <div>{{category?.categoryName}}</div>
+                  <div class="small text-muted">
+                    <span>{{category?.categoryId}}</span>
+                     <!-- | Registered: {{category?.categoryId}} -->
+                  </div>
+                </td>
+                <td>
+                  <div>{{category?.categoryDescription}}</div>
+                </td>
+                <td>
+                  <label class="switch switch-3d switch-primary">
+                    <input type="checkbox" class="switch-input" [(ngModel)]="category.enabled">
+                    <span class="switch-slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <label class="switch switch-3d switch-primary">
+                    <div class="action-buttons">
+                      <button type="button" class="btn btn-primary m-right-6">
+                        <i class="fa fa-eye mt-4"></i>
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        <i class="fa fa-trash mt-4"></i>
+                      </button>
+                    </div>
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

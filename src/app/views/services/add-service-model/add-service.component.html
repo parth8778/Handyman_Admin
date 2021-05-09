@@ -1,0 +1,48 @@
+<button type="button" class="btn btn-secondary mr-1" data-toggle="modal" (click)="myModal.show()">
+  {{btnText}}
+</button>
+
+<div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add service</h4>
+        <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+          <form [formGroup]="serviceForm" action="" method="post"> 
+            <div class="form-group">
+              <label for="name">Service Name</label>
+              <input formControlName="serviceName" type="email" id="name" name="name" class="form-control custom-input" placeholder="Enter service name.." autocomplete="email">
+              <!-- <span class="help-block">Please enter your email</span> -->
+            </div> 
+            <div class="form-group">
+              <label for="category">Select Category</label>
+              <select formControlName="categoryId" class="form-control" id="category">
+                <option *ngFor="let category of categories" [value]="category?.categoryId">{{category?.categoryName}}</option>
+              </select>
+              <!-- <span class="help-block">Please enter your email</span> -->
+            </div>
+            <div class="form-group">
+              <label for="description">Service Description</label>
+              <textarea formControlName="serviceDescription" id="description" name="description" rows="4" class="form-control custom-input" placeholder="Enter service desc.."></textarea>
+              <!-- <span class="help-block">Please enter your password</span> -->
+            </div>
+            <div class="form-group form-group-with-switch">
+              <label for="enabled">Is Enabled</label>
+              <label class="switch switch-3d switch-primary">
+                <input formControlName="enabled" type="checkbox" class="switch-input" checked>
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
+        <button [disabled]="serviceForm.invalid" type="button" class="btn btn-primary" (click)="addService()">Add Service</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

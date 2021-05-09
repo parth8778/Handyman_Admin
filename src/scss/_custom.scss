@@ -1,0 +1,65 @@
+// regular style toast
+@import '~ngx-toastr/toastr';
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+@import '~ngx-toastr/toastr-bs4-alert';
+
+// if you'd like to use it without importing all of bootstrap it requires
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+
+
+// Here you can add other styles
+.card-custom-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+        width: 120px;
+    }
+    input {
+        width: 180px;
+    }
+}
+
+.form-group-with-switch {
+    display: flex;
+    align-items: center;
+    label {
+        margin-right: 6px;
+    }
+}
+
+.custom-input {
+    height: 44px;
+    width: 100% !important;
+}
+
+.action-buttons {
+    display: flex;
+    button {
+        height: 32px;
+        min-width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        border-radius: 0px;
+        i {
+            margin: 0 !important;
+            font-size: 14px;
+        }
+    }
+    .m-right-6 {
+        margin-right: 6px;
+    }
+}
+
+.NgxEditor {
+    height: 65vh;
+    overflow: auto;
+}
