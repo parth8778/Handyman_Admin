@@ -16,24 +16,22 @@ export class FirebaseService {
   ) { }
 
   addDataToCollection(endpoint, data) {
+    const { docId, ...rest } = data;
     const request = {
-      ...data,
+      ...rest,
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    console.log('request is here', request);
-    return this.fireStore.collection(endpoint).add(request);
+    return this.fireStore.collection(endpoint).doc(docId).set(request);
   }
 
-  addOrUpdateCollection(ref, data) {
-    console.log('data: ', data);
-    console.log('ref: ', ref);
+  addOrUpdateCollection(collection, data, docId) {
     const request = {
       ...data,
       createdAt: new Date(),
       updatedAt: new Date()
     };
-    return this.fireStore.doc(ref).set(request);
+    return this.fireStore.collection(collection).doc(docId).set(request);
   }
 
   getCollectionWithId(ref) {
@@ -53,6 +51,14 @@ export class FirebaseService {
   getDataFromCollection(endpoint) {
     return this.fireStore.collection(endpoint).valueChanges();
   }
+
+  removeDataFromCollection(endpoint, docId) {
+    return this.fireStore.collection(endpoint).doc(docId).delete();
+  }
+
+  getCollectionWithDocId(endpoint, docId) {
+    return this.fireStore.collection(endpoint).doc(docId).valueChanges();
+   }
 
   uploadFile(uploadPath,event) {
     var n = Date.now();

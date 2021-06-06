@@ -6,13 +6,14 @@ import { Observable } from "rxjs";
 import { UtilService } from "../../../services/util.service";
 import { ModalDirective } from "ngx-bootstrap/modal";
 import messages from "../../../messages/messages";
+
 @Component({
-  templateUrl: "add-categories.component.html",
-  selector: "add-category",
+  templateUrl: "edit-categories.component.html",
+  selector: "edit-category",
 })
-export class AddCategoriesComponent implements OnInit {
-  @ViewChild('myModal') public myModal: ModalDirective;
-  @Input() btnText = '';
+export class EditCategoriesComponent implements OnInit {
+  @ViewChild('categoryEditModal') public categoryEditModal: ModalDirective;
+  @Input() category = null;
   public categoryForm: FormGroup;
   selectedFile: File = null;
   fb;
@@ -29,29 +30,27 @@ export class AddCategoriesComponent implements OnInit {
 
   initForm() {
     this.categoryForm = this.builder.group({
-      categoryName: ["", [Validators.required]],
-      categoryIcon: ["", [Validators.required]],
-      categoryDescription: ["", [Validators.required]],
-      enabled: [true, [Validators.required]],
-      categoryId: [this.firebaseService.fireStore.createId(), Validators.required],
+      categoryName: [this.category['categoryName'], [Validators.required]],
+      categoryIcon: [this.category['categoryIcon'], [Validators.required]],
+      categoryDescription: [this.category['categoryDescription'], [Validators.required]],
+      enabled: [this.category['enabled'], [Validators.required]],
+      categoryId: [this.category['categoryId'], Validators.required],
     });
   }
 
-  addCategory() {
+  editCategory() {
     this.utilService.startLoader();
     if (this.categoryForm.valid) {
-      const request = {
-        ...this.categoryForm.value,
-        docId: this.categoryForm.value.categoryId
-      }
-      this.firebaseService.addDataToCollection('categories', request).then(() => {
-          this.utilService.showSuccessToast(messages.successTitle, messages.addCategorySuccess);
-          this.initForm();
+      const docId = this.categoryForm.value.categoryId;
+      this.firebaseService.addOrUpdateCollection('categories', this.categoryForm.value, docId).then(() => {
           this.utilService.stopLoader();
-          this.myModal.hide();
+          this.utilService.showSuccessToast(messages.successTitle, messages.updateCategorySuccess);
+          this.initForm();
+          this.categoryEditModal.hide();
       }).catch((err) => {
         this.utilService.showErrorToast(messages.errorTitle, messages.somethingWentWrong);
         this.utilService.stopLoader();
+        console.log('err: ', err);
       });
     }
   }

@@ -59,11 +59,11 @@ export const navItems: INavData[] = [
     url: '/policy',
     icon: 'icon-drop'
   },
-  {
-    name: 'FAQs',
-    url: '/theme/colors',
-    icon: 'icon-drop'
-  },
+  // {
+  //   name: 'FAQs',
+  //   url: '/theme/colors',
+  //   icon: 'icon-drop'
+  // },
   // {
   //   name: 'Colors',
   //   url: '/theme/colors',

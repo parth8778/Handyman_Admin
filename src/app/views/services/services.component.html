@@ -42,12 +42,10 @@
                 <td>
                   <label class="switch switch-3d switch-primary">
                     <div class="action-buttons">
-                      <button type="button" class="btn btn-primary m-right-6">
-                        <i class="fa fa-eye mt-4"></i>
-                      </button>
-                      <button type="button" class="btn btn-primary">
+                      <button (click)="removeService(service)" type="button" class="btn btn-primary m-r-6">
                         <i class="fa fa-trash mt-4"></i>
                       </button>
+                      <edit-service [service]="service"></edit-service>
                     </div>
                   </label>
                 </td>

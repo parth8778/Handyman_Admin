@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -55,9 +55,10 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxUiLoaderModule } from "ngx-ui-loader";
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './guards/auth-guard';
 
 const MODULES = [
   CategoriesModule,
@@ -83,6 +84,8 @@ const FIREBASE_MODULES = [
 
 @NgModule({
   imports: [
+    FormsModule,
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -118,6 +121,7 @@ const FIREBASE_MODULES = [
       useClass: HashLocationStrategy
     },
     IconSetService,
+    AuthGuard
   ],
   bootstrap: [ AppComponent ]
 })

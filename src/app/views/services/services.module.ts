@@ -9,11 +9,12 @@ import { ServicesRoutingModule } from './services-routing.module';
 import { CommonModule } from '@angular/common';
 import { AddServiceComponent } from './add-service-model';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { EditServiceComponent } from './edit-service-model';
 
 const components = [
-  AddServiceComponent
+  AddServiceComponent,
+  EditServiceComponent
 ];
-
 @NgModule({
   imports: [
     FormsModule,

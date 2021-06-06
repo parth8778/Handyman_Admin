@@ -1,12 +1,12 @@
-<button type="button" class="btn btn-secondary mr-1" data-toggle="modal" (click)="myModal.show()">
-  {{btnText}}
+<button (click)="myModal.show()" type="button" class="btn btn-primary">
+  <i class="fa fa-eye mt-4"></i>
 </button>
 
 <div bsModal #myModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add service</h4>
+        <h4 class="modal-title">Edit service</h4>
         <button type="button" class="close" (click)="myModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -41,7 +41,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="myModal.hide()">Close</button>
-        <button [disabled]="serviceForm.invalid" type="button" class="btn btn-primary" (click)="addService()">Add Service</button>
+        <button [disabled]="serviceForm.invalid" type="button" class="btn btn-primary" (click)="editService()">Edit Service</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

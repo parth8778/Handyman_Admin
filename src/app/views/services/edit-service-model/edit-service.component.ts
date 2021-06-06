@@ -5,13 +5,14 @@ import { DataService } from '../../../services/data.service';
 import { FirebaseService } from '../../../services/firebase.service';
 import { UtilService } from '../../../services/util.service';
 import messages from '../../../messages/messages';
+
 @Component({
-  templateUrl: 'add-service.component.html',
-  selector: 'action-service'
+  templateUrl: 'edit-service.component.html',
+  selector: 'edit-service'
 })
-export class AddServiceComponent implements OnInit {
+export class EditServiceComponent implements OnInit {
   @ViewChild('myModal') public myModal: ModalDirective;
-  @Input() btnText = '';
+  @Input() service = null;
   categories = [];
   serviceForm: FormGroup;
 
@@ -29,11 +30,11 @@ export class AddServiceComponent implements OnInit {
 
   initForm() { 
     this.serviceForm = this.builder.group({
-      serviceName: ['', Validators.required],
-      serviceId: [this.firebaseService.fireStore.createId(), Validators.required],
-      categoryId: ['', Validators.required],
-      serviceDescription: ['', Validators.required],
-      enabled: [true, Validators.required]
+      serviceName: [this.service['serviceName'], Validators.required],
+      serviceId: [this.service['serviceId'], Validators.required],
+      categoryId: [this.service['categoryId'], Validators.required],
+      serviceDescription: [this.service['serviceDescription'], Validators.required],
+      enabled: [this.service['enabled'], Validators.required]
     });
   }
  
@@ -45,21 +46,19 @@ export class AddServiceComponent implements OnInit {
     });
   }
  
-  addService() {
+  editService() {
     this.utilService.startLoader();
     if (this.serviceForm.valid) {
-      const request = {
-        ...this.serviceForm.value,
-        docId: this.serviceForm.value.serviceId
-      }
-      this.firebaseService.addDataToCollection('services', request).then(() => {
+      const docId = this.serviceForm.value.serviceId;
+      this.firebaseService.addOrUpdateCollection('services', this.serviceForm.value, docId).then(() => {
          this.utilService.stopLoader();
-         this.utilService.showSuccessToast(messages.successTitle, messages.addServiceSuccess);
+         this.utilService.showSuccessToast(messages.successTitle, messages.updateServiceSuccess);
          this.initForm();
          this.myModal.hide();
       }).catch((err) => {
         this.utilService.showErrorToast(messages.errorTitle, messages.somethingWentWrong);
         this.utilService.stopLoader();
+        console.log('err: ', err);
       });
     }
   }

@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header card-custom-header">
           Categories
-          <addCategory btnText="Add category"></addCategory>
+          <add-category btnText="Add category"></add-category>
         </div>
         <div class="card-body">
           <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -28,7 +28,6 @@
                   <div>{{category?.categoryName}}</div>
                   <div class="small text-muted">
                     <span>{{category?.categoryId}}</span>
-                     <!-- | Registered: {{category?.categoryId}} -->
                   </div>
                 </td>
                 <td>
@@ -43,12 +42,10 @@
                 <td>
                   <label class="switch switch-3d switch-primary">
                     <div class="action-buttons">
-                      <button type="button" class="btn btn-primary m-right-6">
-                        <i class="fa fa-eye mt-4"></i>
-                      </button>
-                      <button type="button" class="btn btn-primary">
+                      <button (click)="removeCategory(category.categoryId)" type="button" class="btn btn-primary m-r-6">
                         <i class="fa fa-trash mt-4"></i>
                       </button>
+                      <edit-category [category]="category"></edit-category>
                     </div>
                   </label>
                 </td>

@@ -9,11 +9,12 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import { CommonModule } from '@angular/common';
 import { AddCategoriesComponent } from './add-category-model';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { EditCategoriesComponent } from './edit-category-model';
 
 const components = [
-  AddCategoriesComponent
+  AddCategoriesComponent,
+  EditCategoriesComponent
 ]
-
 @NgModule({
   imports: [
     FormsModule,

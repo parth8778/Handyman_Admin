@@ -5,6 +5,7 @@ import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
 import { FirebaseService } from './services/firebase.service';
 import { DataService } from './services/data.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   // tslint:disable-next-line
@@ -20,15 +21,25 @@ export class AppComponent implements OnInit {
     private router: Router,
     public iconSet: IconSetService,
     private firebaseService: FirebaseService,
-    private dataService: DataService
+    private dataService: DataService,
+    private firebaseAuth: AngularFireAuth
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
   }
 
   ngOnInit() {
-    this.setCategories();
-    this.setServices();
+    this.firebaseAuth.authState.subscribe((res) => {
+      if (res) {
+        this.router.url
+        if (this.router.url === '/login') {
+          this.router.navigateByUrl('/dashboard')
+        }
+        this.setCategories();
+        this.setServices();
+      }
+    });
+
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
