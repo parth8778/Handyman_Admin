@@ -4,7 +4,7 @@
       <div class="card">  
         <div class="card-header card-custom-header">
           Users
-          <input type="text" class="form-control" placeholder="Search...">
+          <!-- <input type="text" class="form-control" placeholder="Search..."> -->
         </div>
         <div class="card-body">
           <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -15,40 +15,54 @@
                 <th>Email</th>
                 <th>City</th>
                 <th>Contact number</th>
-                <th>Block</th>
-                <th>Action</th>
+                <!-- <th>Block</th>
+                <th>Action</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of [1,2,3,4,5]">
+              <tr *ngFor="let user of users">
                 <td class="text-center">
-                  <div class="avatar">
-                    <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="avatar-status badge-success"></span>
+                  <div
+                    style="
+                      position: relative;
+                      display: inline-block;
+                      width: 56px;
+                      height: 56px;
+                    "
+                    class="avatar"
+                  >
+                    <img
+                      style="
+                        height: 50px !important;
+                        width: 50px !important;
+                        object-fit: cover;
+                        border-radius: 25px;
+                      "
+                      [src]="user?.image"
+                      class="img-avatar"
+                      alt="admin@bootstrapmaster.com"
+                    />
                   </div>
-                </td> 
-                <td> 
-                  <div>Yiorgos Avraamu</div>
+                </td>
+                <td>
+                  <div>
+                    {{ user?.firstName + " " + user?.lastName }}
+                  </div>
                   <div class="small text-muted">
-                    <span>New</span> | Registered: Jan 1, 2015
+                    Registered:
+                    {{ user?.createdAt?.toDate() | date: "MMM d, y" }}
                   </div>
                 </td>
                 <td>
-                  <div>abc@gmail.com</div>
+                  <div>{{ user?.email }}</div>
                 </td>
                 <td>
-                  <div>Rajkot</div>
+                  <div>{{ user?.city?.name }}</div>
                 </td>
                 <td>
-                  <div>+91 9595626412</div>
+                  <div>+91 {{ user?.contactNumber }}</div>
                 </td>
-                <td>
-                  <label class="switch switch-3d switch-primary">
-                    <input type="checkbox" class="switch-input" checked>
-                    <span class="switch-slider"></span>
-                  </label>
-                </td>
-                <td>
+                <!-- <td>
                   <label class="switch switch-3d switch-primary">
                     <div class="action-buttons">
                       <button type="button" class="btn btn-primary m-right-6">
@@ -56,7 +70,7 @@
                       </button>
                     </div>
                   </label>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>

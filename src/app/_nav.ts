@@ -1,19 +1,19 @@
 import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
-  {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
-  }, 
-  { 
-    title: true,
-    name: 'Theme'
-  },
+  // {
+  //   name: 'Dashboard',
+  //   url: '/dashboard',
+  //   icon: 'icon-speedometer',
+  //   badge: {
+  //     variant: 'info',
+  //     text: 'NEW'
+  //   }
+  // }, 
+  // { 
+  //   title: true,
+  //   name: 'Theme'
+  // },
   {
     name: 'Categories',
     url: '/categories',
@@ -39,11 +39,11 @@ export const navItems: INavData[] = [
     url: '/requests',
     icon: 'icon-drop'
   },
-  {
-    name: 'Settings',
-    url: '/settings',
-    icon: 'icon-drop'
-  },
+  // {
+  //   name: 'Settings',
+  //   url: '/settings',
+  //   icon: 'icon-drop'
+  // },
   {
     name: 'About Us',
     url: '/aboutUs',

@@ -26,16 +26,12 @@ export class LoginComponent {
         if (value && value.user) {
           const { uid } = value.user;
           localStorage.setItem("authenticatedId", uid);
-          this.router.navigateByUrl("/dashboard");
+          this.router.navigateByUrl("/categories");
           this.util.showSuccessToast(
             messages.successTitle,
             messages.loginInSuccess
           );
         }
-        this.util.showErrorToast(
-          messages.errorTitle,
-          messages.somethingWentWrong
-        );
       })
       .catch((err) => {
         this.util.showErrorToast(messages.errorTitle, err.message);
